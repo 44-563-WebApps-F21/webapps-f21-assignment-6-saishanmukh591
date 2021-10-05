@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>car page</title>
+</head>
+
+<body>
+
+<h2>Sai Shanmukh Garugu orders a car</h2>
+
+<form>
+    <label for="electric">electric</label>
+    <input type ="checkbox" id="electricCar" name="electricCar" value="electric"> <br>
+
+    <label for="ac">ac</label>
+    <input type ="checkbox" id="acCar" name="acCar" autofocus> <br>
+
+    <label for="gps">gps</label>
+    <input type ="checkbox" id="gpsCar" name="gpsCar" autofocus> <br>
+    <br>
+    <input type="button" onclick="orderCar()" value="Order a car">
+</form>
+<p id="carResults"></p>
+
+
+<form>
+    <label for="propertyName">Enter a property </label>
+    <input type ="text" id="propertyName" name="propertyName" value="color"> <br>
+
+    <label for="propertyValue">Enter a value </label>
+    <input type ="text" id="propertyValue" name="propertyValue" autofocus> <br>
+    <br>
+    <input type="button" onclick="updateCar()" value="Update the car">
+</form>
+
+
+<p id="result"></p>
+
+<script> 
+
+my_car = {};
+
+function orderCar(){
+    my_car = [];
+    my_car["electric"] = document.getElementById("electricCar").checked.toString();
+    my_car["ac"] = document.getElementById("acCar").checked.toString();
+    my_car["gps"] = document.getElementById("gpsCar").checked.toString();
+
+    carResults = document.getElementById("carResults");
+    carResults.innerHTML = "electric: "+my_car["electric"]+", ac: "+my_car["ac"]+", gps: "+my_car["gps"];
+
+}
+
+function updateCar(){
+    my_car["property Name"] = document.getElementById("propertyName").value;
+    my_car["property Value"] = document.getElementById("propertyValue").value;
+    carResults = document.getElementById("carResults");
+    carValues = document.getElementById("carResults").innerHTML;
+
+
+    carResults.innerHTML = carValues+", property Name: "+my_car["property Name"] +", property Value: "+my_car["property Value"];
+}
+
+
+function resolveForm (){
+    console.log("Getting form values")
+    age = document.getElementById("form1_age").value;
+    nick = document.getElementById("form1_nick").value;
+    confirmed = confirm("Are these the values? "+age+" and "+nick);
+    
+    out = document.getElementById("result");
+    if(confirmed){
+        out.innerHTML = "Values were confirmed";
+    } else {
+        out.innerHTML = "Values were not confirmed";
+    }
+}
+</script>
+
+</body>
+</html> 
