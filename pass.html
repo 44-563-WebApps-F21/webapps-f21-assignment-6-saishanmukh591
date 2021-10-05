@@ -17,9 +17,14 @@
 
 <p id="pharseResult">This is pharsed text.</p>
 
+<div>
+    <img id="image" src="images/rabbit.jpg" style="height:200px;width:200px" onclick="newImage()">
+</div>
+
 <script> 
 var correct = 0;
 var wrong = 0;
+var usingImage = 1;
 
 function processPhrase (){
     console.log("Getting pharses")
@@ -27,7 +32,7 @@ function processPhrase (){
     formPharse = document.getElementById("form1_Pharse").value
     if(formSecretPharse.localeCompare(formPharse) == 0){
         correct +=1;
-        alert("“Access allowed");
+        alert("Access allowed");
     }
     else{
         wrong += 1;
@@ -37,6 +42,29 @@ function processPhrase (){
     out = document.getElementById("pharseResult")
     out.innerHTML = "Correct guess count: "+correct+"<br>"+"Wrong guess count: "+wrong;
 }
+
+function newImage (){
+    if(usingImage !=3){
+        usingImage += 1;
+    }
+    else{
+        usingImage =1;
+    }
+    switch(usingImage) {
+    case 1:
+    document.getElementById("image").src = "images/rabbit.jpg";
+        break;
+    
+        case 2:
+    document.getElementById("image").src = "images/panda.jpg";
+    break;
+    
+    default:
+    document.getElementById("image").src = "images/utonagan.jpg";
+    }
+
+}
+
 </script>
 
 </body>
