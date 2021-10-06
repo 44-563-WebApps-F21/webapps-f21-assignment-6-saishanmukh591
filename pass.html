@@ -1,71 +1,103 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Details form</title>
 </head>
+
 <body>
-<h1>Pass phrase by Sai Shanmukh Garugu</h1>
-<form>
-    <label for="form1_secretPharse">Enter the secret phrase</label>
-    <input type ="password" id="form1_secret_pharse" name="form1_secret_pharse" value="Let me in"> <br>
+    <div class="container">
+        <h1 class="col-sm-offset-2 col-sm-10">Pass phrase by Sai Shanmukh Garugu</h1>
+        <br>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="form1_secretPharse">Enter the secret phrase</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="form1_secret_pharse" value="Let me in"
+                        name="form1_secret_pharse">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pwd">Enter a phrase</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="form1_Pharse" name="form1_Pharse">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="button" class="btn btn-primary" onclick="processPhrase()" value="Check the phrase">
+                    </input>
+                </div>
+            </div>
+        </form>
 
-    <label for="form1_nick">Enter a phrase</label>
-    <input type ="text" id="form1_Pharse" name="form1_Pharse" autofocus>
-    <br>
-    <input type="button" onclick="processPhrase()" value="Check the phrase">
-</form>
+        <br>
+        <div class="col-sm-offset-2 col-sm-10">
+            <p id="pharseResult">This is pharsed text.</p>
+            <img id="image" src="images/rabbit.jpg" style="height:200px;width:200px" onclick="newImage()">
+        </div>
 
-<p id="pharseResult">This is pharsed text.</p>
+    </div>
+    <script>
+        var correct = 0;
+        var wrong = 0;
+        var usingImage = 1;
+        var successive = 0;
 
-<div>
-    <img id="image" src="images/rabbit.jpg" style="height:200px;width:200px" onclick="newImage()">
-</div>
+        function processPhrase() {
+            console.log("Getting pharses")
+            formSecretPharse = document.getElementById("form1_secret_pharse").value
+            formPharse = document.getElementById("form1_Pharse").value
+            if (formSecretPharse.localeCompare(formPharse) == 0) {
+                correct += 1;
+                alert("Access allowed");
+                if (successive > 0) {
+                    successive = 0;
+                }
+            }
+            else {
+                wrong += 1;
+                successive += 1;
+                if (successive == 3) {
+                    alert("account locked");
+                    successive = 0;
+                }
+                else {
+                    alert("Access denied");
+                }
+            }
 
-<script> 
-var correct = 0;
-var wrong = 0;
-var usingImage = 1;
+            out = document.getElementById("pharseResult")
+            out.innerHTML = "Correct guess count: " + correct + ", " + "Wrong guess count: " + wrong;
+        }
 
-function processPhrase (){
-    console.log("Getting pharses")
-    formSecretPharse = document.getElementById("form1_secret_pharse").value
-    formPharse = document.getElementById("form1_Pharse").value
-    if(formSecretPharse.localeCompare(formPharse) == 0){
-        correct +=1;
-        alert("Access allowed");
-    }
-    else{
-        wrong += 1;
-        alert("Access denied");
-    }
+        function newImage() {
+            if (usingImage != 3) {
+                usingImage += 1;
+            }
+            else {
+                usingImage = 1;
+            }
+            switch (usingImage) {
+                case 1:
+                    document.getElementById("image").src = "images/rabbit.jpg";
+                    break;
 
-    out = document.getElementById("pharseResult")
-    out.innerHTML = "Correct guess count: "+correct+"<br>"+"Wrong guess count: "+wrong;
-}
+                case 2:
+                    document.getElementById("image").src = "images/panda.jpg";
+                    break;
 
-function newImage (){
-    if(usingImage !=3){
-        usingImage += 1;
-    }
-    else{
-        usingImage =1;
-    }
-    switch(usingImage) {
-    case 1:
-    document.getElementById("image").src = "images/rabbit.jpg";
-        break;
-    
-        case 2:
-    document.getElementById("image").src = "images/panda.jpg";
-    break;
-    
-    default:
-    document.getElementById("image").src = "images/utonagan.jpg";
-    }
+                default:
+                    document.getElementById("image").src = "images/utonagan.jpg";
+            }
 
-}
+        }
 
-</script>
+    </script>
 
 </body>
-</html> 
+
+</html>
