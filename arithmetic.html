@@ -19,39 +19,26 @@
     <p id="powerResult"></p>
 
     <form>
-        <input type="radio" id="operation1" name="color" value="plus"   
-          checked >
+        <input type="radio" id="operation1" name="color" value="plus" onclick="processRadio()" >
         <label for="addition">+</label></br>
 
       
-        <input type="radio" id="operation2" name="color" 
+        <input type="radio" id="operation2" name="color" onclick="processRadio()"
            value="minus">
         <label for="minus">-</label></br>
       
-        <input type="radio" id="operation3" name="color"   
+        <input type="radio" id="operation3" name="color"   onclick="processRadio()"
            value="times">
         <label for="times">*</label></br>
 
-        <input type="radio" id="operation4" name="color"   
+        <input type="radio" id="operation4" name="color"   onclick="processRadio()"
            value="divide">
         <label for="divide">/</label></br>
 
-        <input type="button" onclick="processRadio()" value="calculate">
       </form>
 
     <p id="arithmeticResult"></p>
 
-
-    <form>
-        <label for="form1_age">What is your age </label>
-        <input type="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
-
-        <label for="form1_nick">What is your nickname </label>
-        <input type="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-        <input type="button" onclick="resolveForm()" value="Get values from form">
-    </form>
-    <p id="result"></p>
 
     <script>
 
@@ -90,23 +77,10 @@
                         arthimeticResult = base / power;
                 }
             
-            out.innerHTML = arthimeticResult;
+            out.innerHTML = "Arthimetic operation value: "+arthimeticResult;
 
         }
 
-        function resolveForm() {
-            console.log("Getting form values");
-            age = document.getElementById("form1_age").value;
-            nick = document.getElementById("form1_nick").value;
-            confirmed = confirm("Are these the values? " + age + " and " + nick);
-
-            out = document.getElementById("result");
-            if (confirmed) {
-                out.innerHTML = "Values were confirmed";
-            } else {
-                out.innerHTML = "Values were not confirmed";
-            }
-        }
 
         var result = "";
         function powers() {
@@ -117,10 +91,10 @@
                 result += Math.pow(base, i) + " ";
             }
             out = document.getElementById("powerResult");
-            out.innerHTML = result;
+            out.innerHTML = "Powers are :"+result;
 
             result = "";
-            console.log(result);
+            // console.log(result);
 
         }
     </script>
